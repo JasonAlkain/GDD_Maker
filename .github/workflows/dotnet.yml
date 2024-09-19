@@ -4,6 +4,7 @@
 name: Build WPF App
 
 on:
+  push:
   pull_request:
     branches: [ "master" ]
     
