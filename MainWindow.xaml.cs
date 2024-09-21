@@ -36,7 +36,6 @@ namespace GDD_Maker
             this.DataContext = gdd;
             this.Closing += MainWindow_Closing;
 
-            
         }
 
         //
