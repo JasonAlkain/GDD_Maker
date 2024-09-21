@@ -1,0 +1,47 @@
+name: Build and Release WPF Application
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers the workflow when pushing tags like v1.0.0
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'  # Adjust to your target .NET version
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Application
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish Application
+        run: dotnet publish --configuration Release --no-build --output ./publish
+
+      - name: Create ZIP Archive
+        run: |
+          mkdir artifacts
+          Compress-Archive -Path ./publish/* -DestinationPath artifacts/WPFApp.zip
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          artifacts: artifacts/WPFApp.zip
+          body: |
+            ## What's New
+            - New Features
+            - Fixes
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
