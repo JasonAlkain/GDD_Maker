@@ -39,4 +39,9 @@ jobs:
           tag: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           artifacts: artifacts/WPFApp.zip
+          body: |
+            ## What's New
+            - New Features
+            - Fixes
           token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
