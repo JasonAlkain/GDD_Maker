@@ -1,32 +1,42 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: Build WPF App
+name: Build and Release WPF Application
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-    
+    tags:
+      - 'v*.*.*'  # Triggers the workflow when pushing tags like v1.0.0
+
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Set up .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.x
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'  # Adjust to your target .NET version
 
-    - name: Install dependencies
-      run: dotnet restore
+      - name: Restore Dependencies
+        run: dotnet restore
 
-    - name: Build WPF Project
-      run: dotnet build --configuration Release
+      - name: Build Application
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Publish WPF Project
-      run: dotnet publish --configuration Release --output ./publish
+      - name: Publish Application
+        run: dotnet publish --configuration Release --no-build --output ./publish
+
+      - name: Create ZIP Archive
+        run: |
+          mkdir artifacts
+          Compress-Archive -Path ./publish/* -DestinationPath artifacts/WPFApp.zip
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          artifacts: artifacts/WPFApp.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
