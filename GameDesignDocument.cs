@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace GDD_Maker
 {
@@ -14,6 +15,7 @@ namespace GDD_Maker
         private string _coreMechanics = "";
         private string _artStyle = "";
         private string _soundAndMusic = "";
+        private string _team = "";
 
         public string GameTitle
         {
@@ -119,6 +121,19 @@ namespace GDD_Maker
             }
         }
 
+        public string Team
+        {
+            get => _team;
+            set
+            {
+                if (_team != value) 
+                { 
+                    _team = value;
+                    OnPropertyChanged(nameof(Team));
+                }
+            }
+        }
+
         // Trigger the PropertyChanged event
         protected void OnPropertyChanged(string propertyName)
         {
@@ -133,7 +148,8 @@ namespace GDD_Maker
             string keyFeatures = "", 
             string coreMechanics = "", 
             string artStyle = "", 
-            string soundAndMusic = "")
+            string soundAndMusic = "",
+            string team = "")
         {
             GameTitle = gameTitle ?? "";
             Genre = genre ?? "";
@@ -143,7 +159,13 @@ namespace GDD_Maker
             CoreMechanics = coreMechanics ?? "";
             ArtStyle = artStyle ?? "";
             SoundAndMusic = soundAndMusic ?? "";
+            Team = team ?? "";
+            PropertyChanged = new PropertyChangedEventHandler(PrintPropertyChanged);
+        }
 
+        private void PrintPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            Console.WriteLine(e.PropertyName);
         }
     }
 }

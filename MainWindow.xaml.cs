@@ -16,15 +16,16 @@ namespace GDD_Maker
     /// </summary>
     public partial class MainWindow : Window
     {
+        // 
         private string currentFilePath = string.Empty;
         private GameDesignDocument gdd;
 
-        private string importFilter = "JSON Files (*.json)|*.json";
-        private string exportFilter = "JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|CSV Files (*.csv)|*.csv";
-        private bool isDirty = false;
-        string filledFields = string.Empty;
+        private string m_ImportFilter = "JSON Files (*.json)|*.json";
+        private string m_ExportFilter = "JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|CSV Files (*.csv)|*.csv";
+        private bool m_IsDirty = false;
+        string m_FilledFields = string.Empty;
 
-
+        // 
         public MainWindow()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace GDD_Maker
             
         }
 
+        //
         public void Executed_Open(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBox.Show("Executing the Open command");
@@ -46,19 +48,20 @@ namespace GDD_Maker
         // Event handler for when a property in the GDD changes
         private void Gdd_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            isDirty = true; // Set the isDirty flag to true whenever a property changes
-            if(!filledFields.Contains(e.PropertyName))
-                filledFields += $"\n- {e.PropertyName}";
+            m_IsDirty = true; // Set the isDirty flag to true whenever a property changes
+            if(!m_FilledFields.Contains(e.PropertyName))
+                m_FilledFields += $"\n- {e.PropertyName}";
 
         }
 
+        // 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             //
-            if (isDirty)
+            if (m_IsDirty)
             {
                 var result = MessageBox.Show(
-                    $"Would you like to save your changes?\nThe following fields are filled:{filledFields}", 
+                    $"Would you like to save your changes?\nThe following fields are filled:{m_FilledFields}", 
                     "Unsaved Changes",
                     MessageBoxButton.YesNoCancel, 
                     MessageBoxImage.Warning);
@@ -119,7 +122,7 @@ namespace GDD_Maker
 
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = importFilter
+                Filter = m_ImportFilter
             };
 
             if (openFileDialog.ShowDialog() == true)
@@ -131,12 +134,12 @@ namespace GDD_Maker
         // Save As Dialog
         private void SaveAs()
         {
-            isDirty = false;
-            filledFields = string.Empty;
+            m_IsDirty = false;
+            m_FilledFields = string.Empty;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                Filter = exportFilter
+                Filter = m_ExportFilter
             };
 
             if (saveFileDialog.ShowDialog() == true)
@@ -157,6 +160,7 @@ namespace GDD_Maker
             gdd.CoreMechanics = MechanicsTextBox.Text;
             gdd.ArtStyle = ArtStyleTextBox.Text;
             gdd.SoundAndMusic = SoundMusicTextBox.Text;
+            gdd.Team = TeamTextBox.Text;
         }
 
         // Save Data to a File
@@ -169,7 +173,7 @@ namespace GDD_Maker
 
             string fileExtension = Path.GetExtension(filePath);
             string fileName = Path.GetFileNameWithoutExtension(filePath);
-            string msg = "";
+
             StringBuilder sb = new StringBuilder();
 
             switch (fileExtension)
@@ -246,27 +250,27 @@ namespace GDD_Maker
             MechanicsTextBox.Text = GDD.CoreMechanics;
             ArtStyleTextBox.Text = GDD.ArtStyle;
             SoundMusicTextBox.Text = GDD.SoundAndMusic;
+            TeamTextBox.Text = GDD.Team;
         }
 
-        // Export to JSON
+        /// <summary>
+        /// Export to JSON
+        /// </summary>
+        /// <param name="GDD">GDD Object.</param>
+        /// <param name="filePath">Path to save location.</param>
         private void ExportToJson(GameDesignDocument GDD, string filePath)
         {
             var jsonPOST = JsonConvert.SerializeObject(GDD, Formatting.Indented);
             File.WriteAllText(filePath, jsonPOST);
         }
 
-        // Export to TXT
+        /// <summary>
+        /// Export to TXT
+        /// </summary>
+        /// <param name="GDD">GDD Object.</param>
+        /// <param name="filePath">Path to save location.</param>
         private void ExportToTxt(GameDesignDocument GDD, string filePath)
         {
-            //string fileContent = $"Game Title: {gdd.GameTitle}\n" +
-            //                     $"Genre: {gdd.Genre}\n" +
-            //                     $"Target Audience: {gdd.TargetAudience}\n" +
-            //                     $"Game Description: {gdd.Description}\n" +
-            //                     $"Key Features: {gdd.KeyFeatures}\n" +
-            //                     $"Core Mechanics: {gdd.CoreMechanics}\n" +
-            //                     $"Art Style: {gdd.ArtStyle}\n" +
-            //                     $"Sound and Music: {gdd.SoundAndMusic}";
-
             StringBuilder sb = new StringBuilder();
                         
             foreach (var item in gdd.GetType().GetProperties())
@@ -277,17 +281,21 @@ namespace GDD_Maker
             File.WriteAllText(filePath, $"{sb}");
         }
 
-        // Export to CSV
-        private void ExportToCsv(GameDesignDocument gdd, string filePath)
+        /// <summary>
+        /// Export to CSV
+        /// </summary>
+        /// <param name="GDD">GDD Object.</param>
+        /// <param name="filePath">Path to save location.</param>
+        private void ExportToCsv(GameDesignDocument GDD, string filePath)
         {
             StringBuilder sbKeys = new StringBuilder();
             StringBuilder sbValues = new StringBuilder();
 
-            foreach (var item in gdd.GetType().GetProperties())
+            foreach (var item in GDD.GetType().GetProperties())
             {
                 var name = item.Name+";";
                 sbKeys.Append(name);
-                var value = item.GetValue(gdd)?.ToString() + ";";
+                var value = item.GetValue(GDD)?.ToString() + ";";
                 sbValues.Append(value);
             }
 
