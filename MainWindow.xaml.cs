@@ -85,12 +85,6 @@ namespace GDD_Maker
             SaveToObject();
         }
 
-        // Save Button Event Handler
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            SaveToFile(currentFilePath);
-        }
-
         // Menu 'Save' Click Handler
         private void Menu_Save_Click(object sender, RoutedEventArgs e)
         {
@@ -113,11 +107,7 @@ namespace GDD_Maker
         // Menu 'Open' Click Handler
         private void Menu_Open_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                "Please note that this program only supports loading JSON files at this time.", 
-                "NOTE", 
-                MessageBoxButton.OK
-                );
+            //MessageBox.Show("Please note that this program only supports loading JSON files at this time.", "NOTE", MessageBoxButton.OK);
 
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -160,6 +150,20 @@ namespace GDD_Maker
             gdd.ArtStyle = ArtStyleTextBox.Text;
             gdd.SoundAndMusic = SoundMusicTextBox.Text;
             gdd.Team = TeamTextBox.Text;
+            gdd.CharacterDesigns = CharacterDesignsTextBox.Text;
+            gdd.WorldSetting = WorldSettingTextBox.Text;
+            gdd.Tone = ToneTextBox.Text;
+            gdd.BusinessModel = BusinessModelTextBox.Text;
+            gdd.DesignPillars = DesignPillarsTextBox.Text;
+            gdd.Narrative = NarrativeTextBox.Text;
+        }
+
+        // Save Data to a Object
+        private void Menu_New_Click(object sender, RoutedEventArgs e)
+        {
+            gdd = new();
+            LoadDataIntoFields(gdd);
+            m_IsDirty = false;
         }
 
         // Save Data to a File
@@ -195,7 +199,7 @@ namespace GDD_Maker
                     break;
             }
 
-            MessageBox.Show($"{sb}");
+            //MessageBox.Show($"{sb}");
 
         }
 
@@ -220,7 +224,7 @@ namespace GDD_Maker
                     sb.AppendLine($"Loaded file: {fileName}");
                     sb.AppendLine("If you notice anything missing please let me know via the comments of the project.");
                     
-                    MessageBox.Show($"{sb}","Successfully Loaded");
+                    //MessageBox.Show($"{sb}","Successfully Loaded");
                 }
                 catch (JsonSerializationException ex) 
                 {
@@ -250,6 +254,13 @@ namespace GDD_Maker
             ArtStyleTextBox.Text = GDD.ArtStyle;
             SoundMusicTextBox.Text = GDD.SoundAndMusic;
             TeamTextBox.Text = GDD.Team;
+            CharacterDesignsTextBox.Text = GDD.CharacterDesigns;
+            WorldSettingTextBox.Text = GDD.WorldSetting;
+            ToneTextBox.Text = GDD.Tone;
+            BusinessModelTextBox.Text = GDD.BusinessModel;
+            DesignPillarsTextBox.Text = GDD.DesignPillars;
+            NarrativeTextBox.Text = GDD.Narrative;
+
         }
 
         /// <summary>
