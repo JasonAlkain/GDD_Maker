@@ -40,7 +40,9 @@
         <Menu Grid.Row="0" Margin="0">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="New"/>
+                <Separator/>
                 <MenuItem Header="Open" Command="Open"/>
+                <Separator/>
                 <MenuItem Header="Save" Command="Save"/>
                 <MenuItem Header="Save As" Command="SaveAs"/>
             </MenuItem>
@@ -190,7 +192,7 @@
             </TabItem>
             
              <!--Team Tab-->
-            <TabItem Header="Team" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource TabText}">
+            <TabItem Header="Bussiness" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource TabText}">
                 <Grid Margin="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"/>
