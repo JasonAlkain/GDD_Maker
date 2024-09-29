@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GDD_Maker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="720" ResizeMode="NoResize">
+        Title="MainWindow" Height="540" Width="860" ResizeMode="NoResize">
     <Window.CommandBindings>
         <CommandBinding Command="Save" Executed="Menu_Save_Click"/>
         <CommandBinding Command="SaveAs" Executed="Menu_SaveAs_Click"/>
@@ -42,21 +42,47 @@
             <TabItem Header="General Information">
                 <StackPanel Margin="8">
                     <!-- Game Title -->
-                    <TextBlock Text="Game Title:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock Text="Game Title:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0" ToolTip="What is the running title of the game you would like to make."/>
                     <TextBox x:Name="GameTitleTextBox" Margin="0,0,0,10" Text="{Binding GameTitle, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- Genre -->
-                    <TextBlock Text="Genre:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock Text="Genre:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0" ToolTip="What genre(s) best fit your games direction."/>
                     <TextBox x:Name="GenreTextBox" Margin="0,0,0,10" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- Target Audience -->
-                    <TextBlock Text="Target Audience:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock Text="Target Audience:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0" ToolTip="Who are you making the game for? (e.g. teens-adults)"/>
                     <TextBox x:Name="TargetAudienceTextBox" Margin="0,0,0,10" Text="{Binding TargetAudience, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- Game Description -->
-                    <TextBlock Text="Game Description:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock Text="Game Description:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0" ToolTip="Just a short description of the game."/>
                     <TextBox x:Name="DescriptionTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
+            </TabItem>
+
+            <!-- Designs Tab -->
+            <TabItem Header="Designs and Narrative">
+                <StackPanel>
+                    <!-- Designs -->
+                    <TextBlock Text="Design Pillars:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBox x:Name="DesignTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Text="{Binding DesignPillars, UpdateSourceTrigger=PropertyChanged}"/>
+                    <!-- Narrative -->
+                    <TextBlock Text="Narrative:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBox x:Name="NarrativeTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Text="{Binding Narrative, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Setting and Tone Tab -->
+            <TabItem Header="Setting and Tone">
+                <StackPanel Margin="8">
+                    <!-- Setting -->
+                    <TextBlock Text="World Setting:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBox x:Name="SettingTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Text="{Binding WorldSetting, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!-- Tone -->
+                    <TextBlock Text="Tone and Aesthetics:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBox x:Name="ToneTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Text="{Binding Tone, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
             </TabItem>
 
             <!-- Features and Mechanics Tab -->
@@ -73,18 +99,27 @@
             </TabItem>
 
             <!-- Art & Audio Tab -->
-            <TabItem Header="Art and Audio">
+            <TabItem Header="Art Style and design">
                 <StackPanel Margin="8">
                     <!-- Art Style -->
                     <TextBlock Text="Art Style:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
                     <TextBox x:Name="ArtStyleTextBox" Height="100" Margin="0,0,0,10" Text="{Binding ArtStyle, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <!-- Character Designs -->
+                    <TextBlock Text="Character Designs:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBox x:Name="CharacterDesignsTextBox" Height="100" Margin="0,0,0,10" Text="{Binding CharacterDesigns, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Audio Tab -->
+            <TabItem Header="Audio and Sounds">
+                <StackPanel Margin="8">
                     <!-- Sound and Music -->
                     <TextBlock Text="Sound and Music:" FontSize="16" FontWeight="SemiBold" Margin="0,5,0,0"/>
                     <TextBox x:Name="SoundMusicTextBox" Height="100" Margin="0,0,0,10" Text="{Binding SoundAndMusic, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </TabItem>
-
+            
             <!-- Team Tab -->
             <TabItem Header="Team">
                 <StackPanel Margin="8">

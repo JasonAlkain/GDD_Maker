@@ -10,12 +10,18 @@ namespace GDD_Maker
         private string _gameTitle = "";
         private string _genre = "";
         private string _targetAudience = "";
-        private string _description = ""    ;
+        private string _description = "";
+        private string _narrative = "";
+        private string _designPillars = "";
+        private string _worldSetting = "";
+        private string _tone = "";
         private string _keyFeatures = "";
         private string _coreMechanics = "";
         private string _artStyle = "";
+        private string _characterDesigns = "";
         private string _soundAndMusic = "";
         private string _team = "";
+        private string _businessModel = "";
 
         public string GameTitle
         {
@@ -69,6 +75,58 @@ namespace GDD_Maker
             }
         }
 
+        public string Tone
+        {
+            get => _tone;
+            set
+            {
+                if (_tone != value)
+                {
+                    _tone = value;
+                    OnPropertyChanged(nameof(Tone));
+                }
+            }
+        }
+
+        public string WorldSetting
+        {
+            get => _worldSetting;
+            set
+            {
+                if (_worldSetting != value)
+                {
+                    _worldSetting = value;
+                    OnPropertyChanged(nameof(WorldSetting));
+                }
+            }
+        }
+
+        public string Narrative
+        {
+            get => _narrative;
+            set
+            {
+                if (_narrative != value)
+                {
+                    _narrative = value;
+                    OnPropertyChanged(nameof(Narrative));
+                }
+            }
+        }
+
+        public string DesignPillars
+        {
+            get => _designPillars;
+            set
+            {
+                if (_designPillars != value)
+                {
+                    _designPillars = value;
+                    OnPropertyChanged(nameof(DesignPillars));
+                }
+            }
+        }
+
         public string KeyFeatures
         {
             get => _keyFeatures;
@@ -108,6 +166,19 @@ namespace GDD_Maker
             }
         }
 
+        public string CharacterDesigns
+        {
+            get => _characterDesigns;
+            set
+            {
+                if (_characterDesigns != value)
+                {
+                    _characterDesigns = value;
+                    OnPropertyChanged(nameof(CharacterDesigns));
+                }
+            }
+        }
+
         public string SoundAndMusic
         {
             get => _soundAndMusic;
@@ -134,6 +205,19 @@ namespace GDD_Maker
             }
         }
 
+        public string BusinessModel 
+        { 
+            get => _businessModel;
+            set
+            {
+                if(_businessModel != value)
+                {
+                    _businessModel = value;
+                    OnPropertyChanged(nameof(BusinessModel));
+                }
+            } 
+        }
+
         // Trigger the PropertyChanged event
         protected void OnPropertyChanged(string propertyName)
         {
@@ -141,25 +225,35 @@ namespace GDD_Maker
         }
 
         public GameDesignDocument(
-            string gameTitle = "", 
+            string gameTitle="", 
             string genre = "", 
             string targetAudience = "", 
-            string description = "", 
+            string description = "",
+            string worldSetting = "",
+            string tone = "",
+            string designPillars = "",
             string keyFeatures = "", 
             string coreMechanics = "", 
             string artStyle = "", 
+            string characterDesigns = "",
             string soundAndMusic = "",
-            string team = "")
+            string team = "",
+            string bussinessModel = "")
         {
             GameTitle = gameTitle ?? "";
             Genre = genre ?? "";
             TargetAudience = targetAudience ?? "";
             Description = description ?? "";
+            WorldSetting = worldSetting ?? "";
+            Tone = tone ?? "";
+            DesignPillars = designPillars ?? "";
             KeyFeatures = keyFeatures ?? "";
             CoreMechanics = coreMechanics ?? "";
             ArtStyle = artStyle ?? "";
+            CharacterDesigns = characterDesigns ?? "";
             SoundAndMusic = soundAndMusic ?? "";
             Team = team ?? "";
+            BusinessModel = bussinessModel ?? "";
         }
     }
 }
