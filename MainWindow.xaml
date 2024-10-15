@@ -12,7 +12,11 @@
         TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
         Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="900" Width="1600" ResizeMode="CanResize">
+        Title="MainWindow" 
+        Width="960" Height="540" 
+        MinWidth="640" MinHeight="480"
+        ResizeMode="CanResize"
+        >
     <Window.CommandBindings>
         <CommandBinding Command="Save" Executed="Menu_Save_Click"/>
         <CommandBinding Command="SaveAs" Executed="Menu_SaveAs_Click"/>
@@ -50,10 +54,11 @@
 
          <!--Title--> 
         <TextBlock Grid.Row="1" Text="Game Design Document Maker" FontSize="32" FontWeight="Bold" Margin="8" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
-        
-        
+
+        <!-- ==================================================================================================== -->
+
         <!--TabControl for organizing GDD sections--> 
-        <TabControl Grid.Row="2" Margin="4">
+        <TabControl Grid.Row="2" Margin="4" TabStripPlacement="Left">
             <!--General Information Tab-->
             <TabItem IsSelected="True" Header="General Information" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource TabText}">
                 <Grid Margin="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
