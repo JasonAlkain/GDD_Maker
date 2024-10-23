@@ -12,7 +12,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
         Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" 
+        Title="GDD Maker - v1.2" 
         Width="960" Height="540" 
         MinWidth="640" MinHeight="480"
         ResizeMode="CanResize"
@@ -99,12 +99,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Designs-->
-                    <TextBlock Grid.Row="0" Text="Design Pillars:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="Design Pillars:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What is central to the expeience?"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="DesignPillarsTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding DesignPillars, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
                     <!--Narrative-->
-                    <TextBlock Grid.Row="2" Text="Narrative:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="2" Text="Narrative:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What is the narrative of the game?"/>
                     <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="NarrativeTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Narrative, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
@@ -122,13 +122,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Setting-->
-                    <TextBlock Grid.Row="0" Text="World Setting:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="World Setting:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="How is the game going to look or get made to look?"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="WorldSettingTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding WorldSetting, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
 
                     <!--Tone-->
-                    <TextBlock Grid.Row="2" Text="Tone and Aesthetics:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="2" Text="Tone and Aesthetics:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What is the visual style and iconography?"/>
                     <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="ToneTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Tone, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
@@ -145,13 +145,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Key Features-->
-                    <TextBlock Grid.Row="0" Text="Key Features:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="Key Features:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What are the key features of the game?(e.g.: Open-world, character customization)"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="FeaturesTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding KeyFeatures, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
 
                      <!--Core Mechanics-->
-                    <TextBlock Grid.Row="2" Text="Core Mechanics:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="2" Text="Core Mechanics:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What mechanics are you planning to add? (e.g.: Real-time combat, leveling system)"/>
                     <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="MechanicsTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding CoreMechanics, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
@@ -168,7 +168,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Art Style-->
-                    <TextBlock Grid.Row="0" Text="Art Style:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="Art Style:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What is the artstyle of the game? (e.g.: Fantasy, Cyberpunk, sci-fi)"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="ArtStyleTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding ArtStyle, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
@@ -176,7 +176,7 @@
                      <!--Character Designs-->
                     <TextBlock Grid.Row="2" Text="Character Designs:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
-                        <TextBox x:Name="CharacterDesignsTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding CharacterDesigns, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                        <TextBox x:Name="CharacterDesignsTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding CharacterDesigns, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="How do you imagine the characters to look? (e.g: colorful, monocolored)"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
@@ -187,11 +187,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Sound and Music-->
-                    <TextBlock Grid.Row="0" Text="Sound and Music:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="Music:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="What are you aiming for with the sound in your music? (e.g.: epic, scary, happy)"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
-                        <TextBox x:Name="SoundMusicTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SoundAndMusic, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                        <TextBox x:Name="MusicTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Music, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    </ScrollViewer>
+                    <TextBlock Grid.Row="2" Text="Sound Effects (SFX):" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="How do you want your SFX to sound? (e.g.: clicky, 8-bit, or bubbly)"/>
+                    <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
+                        <TextBox x:Name="SFXTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SFX, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
@@ -206,12 +212,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--Team Style-->
-                    <TextBlock Grid.Row="0" Text="Team:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="0" Text="Team:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="Who is apart of your team? (e.g.: Just you, or multiple people with titles)"/>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="TeamTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Team, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
                     <!--Team Style-->
-                    <TextBlock Grid.Row="2" Text="Business Model:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
+                    <TextBlock Grid.Row="2" Text="Business Model:" FontSize="16" FontWeight="SemiBold" Margin="8,0" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" ToolTip="A business model describes how an organization creates, delivers, and captures value."/>
                     <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Padding="0,8" Margin="8,0,8,8">
                         <TextBox x:Name="BusinessModelTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding BusinessModel, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"/>
                     </ScrollViewer>
