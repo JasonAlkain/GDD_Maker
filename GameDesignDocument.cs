@@ -11,8 +11,8 @@ namespace GDD_Maker
         private string _genre = "";
         private string _targetAudience = "";
         private string _description = "";
-        private string _narrative = "";
         private string _designPillars = "";
+        private string _narrative = "";
         private string _worldSetting = "";
         private string _tone = "";
         private string _keyFeatures = "";
@@ -20,6 +20,8 @@ namespace GDD_Maker
         private string _artStyle = "";
         private string _characterDesigns = "";
         private string _soundAndMusic = "";
+        private string _music = "";
+        private string _sfx = "";
         private string _team = "";
         private string _businessModel = "";
 
@@ -188,6 +190,32 @@ namespace GDD_Maker
                 {
                     _soundAndMusic = value;
                     OnPropertyChanged(nameof(SoundAndMusic));
+                }
+            }
+        }
+
+        public string Music
+        {
+            get => _music;
+            set
+            {
+                if (_music != value)
+                {
+                    _music = value;
+                    OnPropertyChanged(nameof(Music));
+                }
+            }
+        }
+
+        public string SFX
+        {
+            get => _sfx;
+            set
+            {
+                if (_sfx != value)
+                {
+                    _sfx = value;
+                    OnPropertyChanged(nameof(SFX));
                 }
             }
         }

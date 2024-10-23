@@ -21,9 +21,22 @@ namespace GDD_Maker
         private GameDesignDocument gdd;
 
         private string m_ImportFilter = "JSON Files (*.json)|*.json";
-        private string m_ExportFilter = "JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|CSV Files (*.csv)|*.csv";
+        private string m_ExportFilter = "JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|CSV Files (*.csv)|*.csv|Markdown (*.md)|*.md";
         private bool m_IsDirty = false;
         string m_FilledFields = string.Empty;
+
+        Dictionary<string, string> headers = new Dictionary<string, string>
+        {
+            { "TargetAudience", "Target Audience" },
+            { "WorldSetting", "World Setting" },
+            { "DesignPillars", "Design Pillars" },
+            { "KeyFeatures", "Key Features" },
+            { "CoreMechanics", "Core Mechanics" },
+            { "ArtStyle", "Art Style" },
+            { "CharacterDesigns", "Character Designs" },
+            { "SoundAndMusic", "Sound And Music" },
+            { "BusinessModel", "Business Model" }
+        };
 
         // 
         public MainWindow()
@@ -148,7 +161,8 @@ namespace GDD_Maker
             gdd.KeyFeatures = FeaturesTextBox.Text;
             gdd.CoreMechanics = MechanicsTextBox.Text;
             gdd.ArtStyle = ArtStyleTextBox.Text;
-            gdd.SoundAndMusic = SoundMusicTextBox.Text;
+            gdd.Music = MusicTextBox.Text;
+            gdd.SFX = SFXTextBox.Text;
             gdd.Team = TeamTextBox.Text;
             gdd.CharacterDesigns = CharacterDesignsTextBox.Text;
             gdd.WorldSetting = WorldSettingTextBox.Text;
@@ -193,6 +207,10 @@ namespace GDD_Maker
                     ExportToCsv(gdd, filePath);
                     sb.AppendLine($"Exported to Game Design Document to {fileName}");
                     sb.AppendLine("This progam exports to CSV using ';' as the separator.");
+                    break;
+                case ".md":
+                    ExportToMarkdown(gdd, filePath);
+                    sb.AppendLine($"Exported to Game Design Document to {fileName}");
                     break;
                 default:
                     sb.AppendLine("That file type is not supported yet.");
@@ -252,7 +270,8 @@ namespace GDD_Maker
             FeaturesTextBox.Text = GDD.KeyFeatures;
             MechanicsTextBox.Text = GDD.CoreMechanics;
             ArtStyleTextBox.Text = GDD.ArtStyle;
-            SoundMusicTextBox.Text = GDD.SoundAndMusic;
+            MusicTextBox.Text = GDD.Music;
+            SFXTextBox.Text = GDD.SFX;
             TeamTextBox.Text = GDD.Team;
             CharacterDesignsTextBox.Text = GDD.CharacterDesigns;
             WorldSettingTextBox.Text = GDD.WorldSetting;
@@ -261,13 +280,16 @@ namespace GDD_Maker
             DesignPillarsTextBox.Text = GDD.DesignPillars;
             NarrativeTextBox.Text = GDD.Narrative;
 
+            if (GDD.SoundAndMusic != null) {
+                MusicTextBox.Text += "\n"+ GDD.SoundAndMusic;
+            }
         }
 
         /// <summary>
         /// Export to JSON
         /// </summary>
-        /// <param name="GDD">GDD Object.</param>
-        /// <param name="filePath">Path to save location.</param>
+        /// <param _="GDD">GDD Object.</param>
+        /// <param _="filePath">Path to save location.</param>
         private void ExportToJson(GameDesignDocument GDD, string filePath)
         {
             var jsonPOST = JsonConvert.SerializeObject(GDD, Formatting.Indented);
@@ -277,8 +299,8 @@ namespace GDD_Maker
         /// <summary>
         /// Export to TXT
         /// </summary>
-        /// <param name="GDD">GDD Object.</param>
-        /// <param name="filePath">Path to save location.</param>
+        /// <param _="GDD">GDD Object.</param>
+        /// <param _="filePath">Path to save location.</param>
         private void ExportToTxt(GameDesignDocument GDD, string filePath)
         {
             StringBuilder sb = new StringBuilder();
@@ -294,8 +316,8 @@ namespace GDD_Maker
         /// <summary>
         /// Export to CSV
         /// </summary>
-        /// <param name="GDD">GDD Object.</param>
-        /// <param name="filePath">Path to save location.</param>
+        /// <param _="GDD">GDD Object.</param>
+        /// <param _="filePath">Path to save location.</param>
         private void ExportToCsv(GameDesignDocument GDD, string filePath)
         {
             StringBuilder sbKeys = new StringBuilder();
@@ -314,5 +336,23 @@ namespace GDD_Maker
             File.WriteAllText(filePath, csv);
         }
 
+        /// <summary>
+        /// Export to TXT
+        /// </summary>
+        /// <param _="GDD">GDD Object.</param>
+        /// <param _="filePath">Path to save location.</param>
+        private void ExportToMarkdown(GameDesignDocument GDD, string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            foreach (var item in gdd.GetType().GetProperties())
+            {
+
+                string _ = "## " + (headers.TryGetValue(item.Name, out var value) ? value : item.Name);
+                sb.AppendLine(_ + ":\n" + item.GetValue(gdd)?.ToString());
+            }
+
+            File.WriteAllText(filePath, $"{sb}");
+        }
     }
 }
