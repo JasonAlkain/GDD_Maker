@@ -12,7 +12,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
         Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="GDD Maker" 
+        Title="GDD Maker - v1.2" 
         Width="960" Height="540" 
         MinWidth="640" MinHeight="480"
         ResizeMode="CanResize"
